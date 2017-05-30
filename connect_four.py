@@ -3,6 +3,15 @@ class Game:
 
     def __init__(self, height, width, spacing):
         """Initialize the game board."""
+        if ((height < 4) or (width < 4)):
+            raise Exception("Board dimensions are too small.")
+
+        if ((height > 25) or (width > 25)):
+            raise Exception("Board dimensions are too large.")
+
+        if (spacing < 0):
+            raise Exception("Spacing cannot be less than 0.")
+
         self.height = height
         self.width = width
         self.spacing = " " * spacing

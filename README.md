@@ -14,6 +14,7 @@ Players take turns entering a number for the column they want to drop their piec
 * Looping
 * Functions
 * Files & I/O
+* Exceptions
 * Classes & Objects
 
 ## What I Learned
