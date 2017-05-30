@@ -1,8 +1,9 @@
 class Game:
 
-    def __init__(self, height, width):
+    def __init__(self, height, width, spacing):
         self.height = height
         self.width = width
+        self.spacing = " " * spacing
         self.matrix = [[" "
                         for i 
                         in range(self.width)] 
@@ -11,7 +12,7 @@ class Game:
 
     def print_board(self):
         for i in range(self.height):
-            print("|", end="")
+            print(self.spacing + "|", end="")
 
             for j in range(self.width):
                 print(self.matrix[i][j] + "|", end="")
@@ -85,58 +86,61 @@ class Game:
                 self.is_full())
 
     def host_game(self):
-
         self.player = 1
 
         while True:
 
             if (self.player == 1):
 
-                print("Player 1's turn")
+                print(self.spacing + "Player 1's turn")
                 self.player = 2
     
-                move = int(input("Enter a move: "))
+                move = int(input(self.spacing + "Enter a move (column): "))
 
                 if (self.valid_move(move)):
                     self.add_move(move, "X")
                 else:
-                    print("Invalid move! Please try again.")
+                    print(self.spacing + "Invalid move! Please try again.")
                     self.player = 1
 
+                print("\n")
                 self.print_board()
 
                 if (self.check_win("X")):
-                    print("Player 1 has won the game!")
+                    print(self.spacing + "Player 1 has won the game!")
                     break
 
                 if (self.check_tie()):
-                    print("The game has ended in a tie!")
+                    print(self.spacing + "The game has ended in a tie!")
                     break
 
             else:
 
-                print("Player 2's turn")
+                print(self.spacing + "Player 2's turn")
                 self.player = 1
 
-                move = int(input("Enter a move: "))
+                move = int(input(self.spacing + "Enter a move (column): "))
 
                 if (self.valid_move(move)):
                     self.add_move(move, "O")
                 else:
-                    print("Invalid move! Please try again.")
+                    print(self.spacing + "Invalid move! Please try again.")
                     self.player = 2
 
+                print("\n")
                 self.print_board()
 
                 if (self.check_win("O")):
-                    print("Player 2 has won the game!")
+                    print(self.spacing + "Player 2 has won the game!")
                     break
 
                 if (self.check_tie()):
-                    print("The game has ended in a tie!")
+                    print(self.spacing + "The game has ended in a tie!")
                     break
 
-g = Game(6,7)
+g = Game(6, 7, 4)
+print("\n")
 print("Welcome to Connect Four!")
+print("\n")
 g.print_board()
 g.host_game()
