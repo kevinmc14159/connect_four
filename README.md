@@ -19,6 +19,6 @@ Players take turns entering a number for the column they want to drop their piec
 ## What I Learned
 * Application of the object-oriented programming paradigm for this game is possible because the game can be represented as a class with fields (board dimensions, current state of the board, etc.) and methods (adding a move, checking for a win, etc.).
 * Testing individual methods while they are written reduces the likelihood of complex bugs later in development.
-* Writing code should only happen after you have solid understanding of the implementation of the fundamental principles being used for a project.
+* Writing code should only happen after you have a solid understanding of the implementation of the fundamental principles being used for a project.
 * Methods require a calling object while functions do not.
 * The *print()* function automatically prints a newline character after printing the arguments passed in. If the *print()* function is called without any arguments, it simply prints a newline character.
