@@ -1,6 +1,8 @@
 class Game:
+    """Object-oriented approach to Connect Four game."""
 
     def __init__(self, height, width, spacing):
+        """Initialize the game board."""
         self.height = height
         self.width = width
         self.spacing = " " * spacing
@@ -11,29 +13,32 @@ class Game:
                         in range(self.height)]
 
     def print_board(self):
+        """Display current state of game board."""
         for i in range(self.height):
             print(self.spacing + "|", end="")
 
             for j in range(self.width):
                 print(self.matrix[i][j] + "|", end="")
 
-            print("\n")
+            print()
 
     def add_move(self, column, piece):
+        """Add piece to lowest available row for a column."""
         for i in reversed(range(self.height)):
             if (self.matrix[i][column] == " "):
                 self.matrix[i][column] = piece
                 break
 
     def valid_move(self, column):
+        """Check if a column is out of range or full."""
         if ((column >= 0) and (column < self.width)):
             for i in range(self.height):
                 if (self.matrix[i][column] == " "):
                     return True
-        else:
-            return False
+        return False
 
     def is_full(self):
+        """Check if the entire board is full."""
         for i in range(self.height):
             for j in range(self.width):
                 if (self.matrix[i][j] == " "):
@@ -41,7 +46,7 @@ class Game:
         return True
 
     def check_win(self, piece):
-
+        """Check if a 4-in-a-row combination exists on the board."""
         # Horizontal
         for i in range(self.height):
             for j in range(self.width - 3):
@@ -81,20 +86,19 @@ class Game:
         return False
 
     def check_tie(self):
+        """Check if the game has ended in a draw."""
         return ((not self.check_win("X")) and 
                 (not self.check_win("O")) and 
                 self.is_full())
 
     def host_game(self):
+        """Alternate players, populate board, and check for win/draw."""
         self.player = 1
 
         while True:
-
             if (self.player == 1):
-
                 print(self.spacing + "Player 1's turn")
                 self.player = 2
-    
                 move = int(input(self.spacing + "Enter a move (column): "))
 
                 if (self.valid_move(move)):
@@ -103,7 +107,7 @@ class Game:
                     print(self.spacing + "Invalid move! Please try again.")
                     self.player = 1
 
-                print("\n")
+                print()
                 self.print_board()
 
                 if (self.check_win("X")):
@@ -115,10 +119,8 @@ class Game:
                     break
 
             else:
-
                 print(self.spacing + "Player 2's turn")
                 self.player = 1
-
                 move = int(input(self.spacing + "Enter a move (column): "))
 
                 if (self.valid_move(move)):
@@ -127,7 +129,7 @@ class Game:
                     print(self.spacing + "Invalid move! Please try again.")
                     self.player = 2
 
-                print("\n")
+                print()
                 self.print_board()
 
                 if (self.check_win("O")):
@@ -139,8 +141,8 @@ class Game:
                     break
 
 g = Game(6, 7, 4)
-print("\n")
+print()
 print("Welcome to Connect Four!")
-print("\n")
+print()
 g.print_board()
 g.host_game()
