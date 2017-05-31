@@ -56,7 +56,7 @@ class Game:
 
     def check_win(self, piece):
         """Check if a 4-in-a-row combination exists on the board."""
-        # Horizontal
+        # Check horizontal.
         for i in range(self.height):
             for j in range(self.width - 3):
                 if (self.matrix[i][j] == piece and
@@ -65,7 +65,7 @@ class Game:
                     self.matrix[i][j + 3] == piece):
                         return True
 
-        # Vertical
+        # Check vertical.
         for i in range(self.height - 3):
             for j in range(self.width):
                 if (self.matrix[i][j] == piece and
@@ -74,7 +74,7 @@ class Game:
                     self.matrix[i + 3][j] == piece):
                         return True
 
-        # Diagonal from upper left to bottom right
+        # Check diagonal from upper left to bottom right.
         for i in range(self.height - 3):
             for j in range(self.width - 3):
                 if (self.matrix[i][j] == piece and
@@ -83,7 +83,7 @@ class Game:
                     self.matrix[i + 3][j + 3] == piece):
                         return True
 
-        # Diagonal from upper right to bottom left
+        # Check diagonal from upper right to bottom left.
         for i in range(self.height - 3):
             for j in range(3, self.width):
                 if (self.matrix[i][j] == piece and
@@ -110,6 +110,7 @@ class Game:
                 self.player = 2
                 move = int(input(self.spacing + "Enter a move (column): "))
 
+                # Attempt to update board with player's move.
                 if (self.valid_move(move)):
                     self.add_move(move, "X")
                 else:
@@ -119,6 +120,7 @@ class Game:
                 print()
                 self.print_board()
 
+                # Check if game has ended.
                 if (self.check_win("X")):
                     print(self.spacing + "Player 1 has won the game!")
                     break
@@ -132,6 +134,7 @@ class Game:
                 self.player = 1
                 move = int(input(self.spacing + "Enter a move (column): "))
 
+                # Attempt to update board with player's move.
                 if (self.valid_move(move)):
                     self.add_move(move, "O")
                 else:
@@ -141,6 +144,7 @@ class Game:
                 print()
                 self.print_board()
 
+                # Check if game has ended.
                 if (self.check_win("O")):
                     print(self.spacing + "Player 2 has won the game!")
                     break
@@ -149,6 +153,7 @@ class Game:
                     print(self.spacing + "The game has ended in a tie!")
                     break
 
+# Start the game.
 g = Game(6, 7, 4)
 print()
 print("Welcome to Connect Four!")
